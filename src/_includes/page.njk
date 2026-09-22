@@ -1,0 +1,33 @@
+---
+layout: base.njk
+---
+<article class="page">
+  <header class="page-hero">
+    <div class="wrap">
+      <h1>{{ title }}</h1>
+    </div>
+  </header>
+  {% if heroImage %}
+  <figure class="page-hero-image">
+    <img src="{{ heroImage }}" alt="">
+  </figure>
+  {% endif %}
+  <div class="wrap narrow prose">
+    {{ content | safe }}
+  </div>
+  {% if page.fileSlug == "contact" %}
+  <section class="band">
+    <div class="wrap narrow">
+      {% include "contact-form.njk" %}
+    </div>
+  </section>
+  {% endif %}
+  {% if page.fileSlug == "newsletter" %}
+  <section class="band">
+    <div class="wrap narrow">
+      {% set formIntro = "" %}
+      {% include "subscribe-form.njk" %}
+    </div>
+  </section>
+  {% endif %}
+</article>

@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-card">
+      <p>{{ site.name }}<br>
+        {{ site.practice }}<br>
+        {{ site.address[0] }}<br>
+        {{ site.address[1] }}<br>
+        License {{ site.license }}<br>
+        <a href="{{ site.phoneTel }}">{{ site.phoneDisplay }}</a>
+      </p>
+    </div>
+    <div class="footer-card">
+      <p class="footer-name">Email list</p>
+      {% set formIntro = "A short note when there is something new." %}
+      {% include "subscribe-form.njk" %}
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/blog/">Blog</a>
+      <a href="/podcast/">Podcast</a>
+      <a href="/videos/">Videos</a>
+      <a href="/contact/">Contact</a>
+      <a href="/newsletter/">Newsletter</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </div>
+</footer>

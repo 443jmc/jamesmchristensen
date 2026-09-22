@@ -1,0 +1,73 @@
+---
+layout: base.njk
+title: Couples Therapy in Roseville, CA | Roseville Couples Counseling
+seoTitle: Couples Therapy in Roseville, CA | Roseville Couples Counseling
+description: Couples therapy and marriage counseling in Roseville, CA for conflict, disconnection, infidelity, and communication problems. First session free.
+permalink: /
+---
+<div class="home">
+  <section class="panel headline">
+    <h1>Real Change,<br>Less Time.</h1>
+  </section>
+
+  <section class="panel offer">
+    <p>Online Coaching Worldwide<br>In Person Therapy in Roseville CA</p>
+    <p class="offer-price">50-minute sessions cost $300<br>Your first session is free<br>I don’t take insurance.</p>
+    <p class="schedule"><a href="{{ site.booking }}">Click Here to Schedule</a></p>
+  </section>
+
+  <figure class="photo cadet">
+    <img src="/images/site/k-cadet.jpg" alt="A man dressed as a U.S. Marine in uniform and a woman smiling, holding a bicycle, standing outdoors.">
+  </figure>
+
+  <section class="panel story">
+    <h2>Our Story</h2>
+    {% for paragraph in home.story %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+  </section>
+
+  <figure class="photo tree">
+    <img src="/images/site/tree-1.jpg" alt="A woman and a man smiling and looking at each other while sitting against a large tree.">
+  </figure>
+
+  <section class="panel how">
+    <h2>How it Works</h2>
+    {% for paragraph in home.how %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+  </section>
+
+  <figure class="photo james">
+    <img src="/images/site/k9.jpg" alt="James Christensen offers couples therapy in Roseville, CA.">
+  </figure>
+
+  <section class="videos">
+    <h2>Popular Videos</h2>
+    <div class="video-grid">
+      {% for video in home.videos %}
+      <figure class="video-card">
+        <div class="embed-frame">
+          <iframe src="https://www.youtube.com/embed/{{ video.id }}" title="{{ video.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </figure>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="issues">
+    <h2>How it Works</h2>
+    <div class="topic-grid">
+      {% for issue in home.issues %}
+      <a class="topic-card {{ issue.key }}" href="{{ issue.href }}">
+        <p><strong>{{ issue.title }}</strong> — {{ issue.body }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <h2>Call <a href="{{ site.phoneTel }}">{{ site.phoneDisplay }}</a><br>Or use This Form</h2>
+    {% include "contact-form.njk" %}
+  </section>
+</div>

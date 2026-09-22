@@ -1,0 +1,37 @@
+---
+permalink: /podcast/rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Balance your Brain</title>
+    <link>{{ site.url }}/podcast</link>
+    <language>en-US</language>
+    <description>Love, Dating, and Relationships with James Christensen LMFT</description>
+    <itunes:author>James Christensen</itunes:author>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:type>episodic</itunes:type>
+    <itunes:image href="{{ site.url }}/images/site/podcast-cover.png"/>
+    <itunes:owner>
+      <itunes:name>James Christensen</itunes:name>
+      <itunes:email>james.m.christensen@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:category text="Society &amp; Culture">
+      <itunes:category text="Relationships"/>
+    </itunes:category>
+    {% for post in collections.podcast | sortByDate %}
+    {% set enc = post.data.audioUrl | enclosure %}
+    <item>
+      <title>{{ post.data.title | xml }}</title>
+      <link>{{ site.url }}{{ post.url | canonical("") }}</link>
+      <guid>{{ site.url }}{{ post.url | canonical("") }}</guid>
+      <pubDate>{{ post.data.pubDate | isoDate }}</pubDate>
+      {% if post.data.excerpt %}<description>{{ post.data.excerpt | xml }}</description>{% endif %}
+      {% if enc %}
+      <enclosure url="{{ enc.url | xml }}" length="{{ enc.length }}" type="{{ enc.type }}"/>
+      {% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

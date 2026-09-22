@@ -1,0 +1,21 @@
+---
+layout: base.njk
+title: Blog
+seoTitle: Couples Therapy Blog | Relationship Advice from a Therapist
+description: Research-backed articles on marriage, intimacy, and relationship growth from a Roseville couples therapist.
+permalink: /blog/
+rssHref: /blog?format=rss
+rssTitle: Roseville Couples Therapy Blog
+---
+<header class="page-hero">
+  <div class="wrap">
+    <h1>Blog</h1>
+    <p class="lede">Writing on conflict, intimacy, narcissism, and growing up in a marriage.</p>
+  </div>
+</header>
+<section class="band">
+  <div class="wrap">
+    {% set items = collections.blog | sortByDate %}
+    {% include "cards.njk" %}
+  </div>
+</section>

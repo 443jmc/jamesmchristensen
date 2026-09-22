@@ -1,0 +1,16 @@
+<div class="form-wrap">
+  {% if formIntro %}<p class="form-intro">{{ formIntro }}</p>{% endif %}
+  <form class="form" method="post" action="/api/subscribe" data-form>
+    <label>First name
+      <input type="text" name="firstName" required autocomplete="given-name" maxlength="80">
+    </label>
+    <label>Email
+      <input type="email" name="email" required autocomplete="email" maxlength="200" inputmode="email">
+    </label>
+    <label class="hp">Company
+      <input type="text" name="company" tabindex="-1" autocomplete="off">
+    </label>
+    <button class="btn btn-solid" type="submit">Join the list</button>
+  </form>
+  <div class="form-status" data-form-status hidden></div>
+</div>

@@ -1,0 +1,14 @@
+<div class="card-grid">
+  {% for item in items %}
+  <a class="entry-card" href="{{ item.url }}">
+    {% if item.data.heroImage %}
+    <img src="{{ item.data.heroImage }}" alt="">
+    {% endif %}
+    <div class="body">
+      <h2>{{ item.data.title }}</h2>
+      {% if item.data.pubDate %}<time>{{ item.data.pubDate | prettyDate }}</time>{% endif %}
+      {% if item.data.excerpt %}<p>{{ item.data.excerpt }}</p>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>

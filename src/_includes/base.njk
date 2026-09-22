@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="facebook-domain-verification" content="{{ site.facebookDomainVerification }}">
+  <title>{{ seoTitle or title }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <link rel="canonical" href="{{ page.url | canonical(site.url) }}">
+  <link rel="icon" href="/favicon.ico">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ seoTitle or title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ page.url | canonical(site.url) }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ site.url }}{{ heroImage or '/images/site/og-default.png' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seoTitle or title }}">
+  <meta name="twitter:description" content="{{ description or site.description }}">
+  {% if rssHref %}
+  <link rel="alternate" type="application/rss+xml" title="{{ rssTitle }}" href="{{ rssHref }}">
+  {% endif %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ site.gtm }}');
+  </script>
+  {% if page.url == "/" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "{{ site.practice }}",
+    "url": "{{ site.url }}",
+    "telephone": "{{ site.phoneDisplay }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "300 Harding Blvd Suite 108",
+      "addressLocality": "Roseville",
+      "addressRegion": "CA",
+      "postalCode": "95678",
+      "addressCountry": "US"
+    },
+    "priceRange": "$$",
+    "description": "{{ site.description }}"
+  }
+  </script>
+  {% endif %}
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  {% include "header.njk" %}
+  <main id="content">
+    {{ content | safe }}
+  </main>
+  {% include "footer.njk" %}
+  <script src="/js/site.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.ga }}');
+  </script>
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{ site.pixel }}');
+    fbq('track', 'PageView');
+  </script>
+</body>
+</html>

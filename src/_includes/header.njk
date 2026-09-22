@@ -1,0 +1,42 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="/">{{ site.name }}</a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a class="nav-link" href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Home</a>
+      <div class="nav-folder">
+        <button class="nav-link" type="button" data-folder-toggle aria-expanded="false">Services</button>
+        <div class="nav-dropdown">
+          {% for item in site.services %}
+          <a href="{{ item.href }}">{{ item.label }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="nav-folder">
+        <button class="nav-link" type="button" data-folder-toggle aria-expanded="false">Resources</button>
+        <div class="nav-dropdown">
+          {% for item in site.resources %}
+          <a href="{{ item.href }}">{{ item.label }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <a class="btn header-cta" href="{{ site.booking }}">Get Started</a>
+    </nav>
+    <button class="burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav">
+      <span class="visually-hidden">Menu</span>
+      <span class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="mobile-nav" data-mobile-nav aria-label="Mobile">
+    <a href="/">Home</a>
+    <p class="folder-label">Services</p>
+    {% for item in site.services %}
+    <a class="sub" href="{{ item.href }}">{{ item.label }}</a>
+    {% endfor %}
+    <p class="folder-label">Resources</p>
+    {% for item in site.resources %}
+    <a class="sub" href="{{ item.href }}">{{ item.label }}</a>
+    {% endfor %}
+    <a class="btn btn-solid mobile-cta" href="{{ site.booking }}">Get Started</a>
+    <a class="btn mobile-cta" href="{{ site.phoneTel }}">{{ site.phoneDisplay }}</a>
+  </nav>
+</header>

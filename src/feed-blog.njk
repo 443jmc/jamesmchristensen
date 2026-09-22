@@ -1,0 +1,22 @@
+---
+permalink: /blog/rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Roseville Couples Therapy Blog</title>
+    <link>{{ site.url }}/blog</link>
+    <description>{{ site.description }}</description>
+    <language>en-US</language>
+    {% for post in collections.blog | sortByDate %}
+    <item>
+      <title>{{ post.data.title | xml }}</title>
+      <link>{{ site.url }}{{ post.url | canonical("") }}</link>
+      <guid>{{ site.url }}{{ post.url | canonical("") }}</guid>
+      <pubDate>{{ post.data.pubDate | isoDate }}</pubDate>
+      {% if post.data.excerpt %}<description>{{ post.data.excerpt | xml }}</description>{% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

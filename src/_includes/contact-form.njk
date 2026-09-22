@@ -1,0 +1,24 @@
+<div class="form-wrap">
+  <form class="form" method="post" action="/api/contact" data-form>
+    <label>First name
+      <input type="text" name="firstName" required autocomplete="given-name" maxlength="80">
+    </label>
+    <label>Last name
+      <input type="text" name="lastName" required autocomplete="family-name" maxlength="80">
+    </label>
+    <label>Email
+      <input type="email" name="email" required autocomplete="email" maxlength="200" inputmode="email">
+    </label>
+    <label>Phone
+      <input type="tel" name="phone" autocomplete="tel" maxlength="40" inputmode="tel">
+    </label>
+    <label>Message
+      <textarea name="message" required maxlength="5000"></textarea>
+    </label>
+    <label class="hp">Company
+      <input type="text" name="company" tabindex="-1" autocomplete="off">
+    </label>
+    <button class="btn btn-solid" type="submit">Submit</button>
+  </form>
+  <div class="form-status" data-form-status hidden></div>
+</div>

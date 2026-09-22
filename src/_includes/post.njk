@@ -1,0 +1,21 @@
+---
+layout: base.njk
+---
+<article class="page">
+  <header class="page-hero">
+    <div class="wrap">
+      <h1>{{ title }}</h1>
+      {% if pubDate %}
+      <time datetime="{{ pubDate | isoDate }}">{{ pubDate | prettyDate }}</time>
+      {% endif %}
+    </div>
+  </header>
+  {% if heroImage %}
+  <figure class="page-hero-image{% if '/podcast/' in page.url %} is-cover{% endif %}">
+    <img src="{{ heroImage }}" alt="">
+  </figure>
+  {% endif %}
+  <div class="wrap narrow prose">
+    {{ content | safe }}
+  </div>
+</article>
