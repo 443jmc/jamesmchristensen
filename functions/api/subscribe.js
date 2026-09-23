@@ -1,3 +1,5 @@
+import { deliver } from "./deliver.js";
+
 const SUCCESS = "You’re on the list. Thank you.";
 
 function json(data, status) {
@@ -41,28 +43,17 @@ export async function onRequestPost(context) {
     return reply(context.request, false, "Please include your first name and a valid email.", 400);
   }
 
-  const endpoint = context.env.SUBSCRIBE_WEBHOOK_URL || context.env.FORMSPREE_URL;
-  if (!endpoint) {
-    return reply(
-      context.request,
-      false,
-      "The email list is not connected yet. Set SUBSCRIBE_WEBHOOK_URL or FORMSPREE_URL in Cloudflare.",
-      503
-    );
-  }
-
-  const forwarded = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      form: "newsletter",
-      firstName: firstName,
-      email: email,
-      source: "jamesmchristensen.com email list",
-    }),
+  const sent = await deliver(context.env, {
+    form: "newsletter",
+    firstName: firstName,
+    email: email,
+    source: "jamesmchristensen.com email list",
   });
 
-  if (!forwarded.ok) {
+  if (sent === null) {
+    return reply(context.request, false, "The email list is not connected yet. Please call 916-292-8920.", 503);
+  }
+  if (!sent) {
     return reply(context.request, false, "Unable to join the list right now. Please try again later.", 502);
   }
 

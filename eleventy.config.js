@@ -43,6 +43,12 @@ module.exports = function (eleventyConfig) {
     return date.toISOString();
   });
 
+  eleventyConfig.addFilter("rfc822", (value) => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "";
+    return date.toUTCString();
+  });
+
   eleventyConfig.addFilter("xml", (value) =>
     String(value || "")
       .replace(/&/g, "&amp;")

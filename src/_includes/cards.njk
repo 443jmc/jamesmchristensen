@@ -6,7 +6,7 @@
     {% endif %}
     <div class="body">
       <h2>{{ item.data.title }}</h2>
-      {% if item.data.pubDate %}<time>{{ item.data.pubDate | prettyDate }}</time>{% endif %}
+      {% if showDates != false and item.data.pubDate %}<time>{{ item.data.pubDate | prettyDate }}</time>{% endif %}
       {% if item.data.excerpt %}<p>{{ item.data.excerpt }}</p>{% endif %}
     </div>
   </a>

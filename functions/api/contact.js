@@ -1,3 +1,5 @@
+import { deliver } from "./deliver.js";
+
 const SUCCESS =
   "Thank you for reaching out. I’ll respond soon. Feel free to call 916-292-8920. I often pick up.";
 
@@ -45,31 +47,20 @@ export async function onRequestPost(context) {
     return reply(context.request, false, "Please include your name, a valid email, and a message.", 400);
   }
 
-  const endpoint = context.env.FORMSPREE_URL || context.env.CONTACT_WEBHOOK_URL;
-  if (!endpoint) {
-    return reply(
-      context.request,
-      false,
-      "This form is not connected yet. Call 916-292-8920, or set FORMSPREE_URL in Cloudflare.",
-      503
-    );
-  }
-
-  const forwarded = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      form: "contact",
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phone: phone,
-      message: message,
-      source: "jamesmchristensen.com contact form",
-    }),
+  const sent = await deliver(context.env, {
+    form: "contact",
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+    message: message,
+    source: "jamesmchristensen.com contact form",
   });
 
-  if (!forwarded.ok) {
+  if (sent === null) {
+    return reply(context.request, false, "This form is not connected yet. Please call 916-292-8920.", 503);
+  }
+  if (!sent) {
     return reply(context.request, false, "Unable to send your message. Please call 916-292-8920.", 502);
   }
 

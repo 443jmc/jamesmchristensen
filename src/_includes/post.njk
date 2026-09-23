@@ -5,7 +5,7 @@ layout: base.njk
   <header class="page-hero">
     <div class="wrap">
       <h1>{{ title }}</h1>
-      {% if pubDate %}
+      {% if pubDate and '/book-summaries/' not in page.url %}
       <time datetime="{{ pubDate | isoDate }}">{{ pubDate | prettyDate }}</time>
       {% endif %}
     </div>

@@ -13,6 +13,7 @@ permalink: /book-summaries/
 <section class="band">
   <div class="wrap">
     {% set items = collections.summaries | sortByDate %}
+    {% set showDates = false %}
     {% include "cards.njk" %}
   </div>
 </section>

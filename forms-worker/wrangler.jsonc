@@ -1,0 +1,13 @@
+{
+  "name": "jmc-forms",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-22",
+  "workers_dev": true,
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "james.m.christensen@gmail.com",
+      "allowed_sender_addresses": ["forms@strengthbasedmarriage.com"]
+    }
+  ]
+}
