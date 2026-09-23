@@ -322,12 +322,17 @@ p {
   border: 6px solid #000;
   border-radius: 22px;
   padding: 1rem 1.05rem 1.15rem;
+  text-align: left;
+}
+
+.panel h1,
+.panel h2 {
   text-align: center;
 }
 
 .panel h1 {
-  font-size: clamp(3.1rem, 5vw, 3.55rem);
-  line-height: 0.95;
+  font-size: clamp(2.35rem, 4.4vw, 2.85rem);
+  line-height: 1.05;
   margin: 0;
 }
 
@@ -351,6 +356,7 @@ p {
 .offer {
   font-size: 1.22rem;
   line-height: 1.45;
+  text-align: center;
 }
 
 .offer-price {
@@ -367,9 +373,11 @@ p {
   min-height: 44px;
 }
 
-.photo {
+.home .photo {
   margin: 0;
   min-height: 16rem;
+  border-radius: 22px;
+  overflow: hidden;
 }
 
 .photo img {
@@ -399,32 +407,42 @@ p {
   gap: 1rem;
 }
 
-.issue-list {
-  list-style: none;
-  margin: 0;
-  padding: 0.35rem 1.15rem;
+.topic-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: 0.75rem;
+  align-items: start;
+  background: var(--paper);
+  border: 6px solid #000;
+  border-radius: 22px;
+  padding: 0.85rem;
+}
+
+.topic-card {
+  display: block;
+  text-decoration: none;
   background: #fff;
   border-radius: 22px;
+  padding: 0.9rem 1rem 1rem;
+  text-align: center;
 }
 
-.issue-list a {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0.35rem 0;
+.topic-card p {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.topic-card strong {
+  display: block;
   font-family: var(--serif);
-  font-size: 1.45rem;
-  line-height: 1.2;
-  text-decoration: none;
-}
-
-.issue-list a:hover,
-.issue-list a:focus {
-  text-decoration: underline;
-  text-underline-offset: 0.12em;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .home .contact-band {
@@ -451,7 +469,7 @@ p {
 }
 
 .contact-form .form-intro {
-  text-align: center;
+  text-align: left;
   margin: 0 0 0.85rem;
 }
 
@@ -493,13 +511,6 @@ p {
 }
 
 @media (min-width: 560px) {
-  .issue-list {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1.5rem;
-    padding-left: 1.4rem;
-    padding-right: 1.4rem;
-  }
-
   .contact-form .form {
     grid-template-columns: 1fr 1fr;
     gap: 0.55rem 0.7rem;
@@ -526,6 +537,15 @@ p {
   height: 0;
   padding-bottom: 56.25%;
   background: #000;
+}
+
+.home .embed-frame,
+.home .embed-frame iframe {
+  border-radius: 22px;
+}
+
+.home .embed-frame {
+  overflow: hidden;
 }
 
 .embed-frame iframe {
@@ -749,25 +769,31 @@ p {
       "cadet story"
       "how tree"
       "issues issues"
-      "contact contact"
-      "videos videos";
+      "videos videos"
+      "contact contact";
     align-items: stretch;
   }
 
-  .photo { height: 100%; min-height: 0; }
+  .home .photo { height: 100%; min-height: 0; }
   .headline { grid-area: headline; }
   .offer { grid-area: offer; }
-  .james {
-    grid-area: james;
+  .james,
+  .cadet,
+  .tree {
     position: relative;
     min-height: 0;
   }
-  .james img {
+  .james { grid-area: james; }
+  .james img,
+  .cadet img,
+  .tree img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .james img {
     object-position: center 18%;
   }
   .cadet { grid-area: cadet; }
@@ -783,6 +809,24 @@ p {
     grid-template-rows: auto auto;
     grid-auto-flow: column;
   }
+
+  .topic-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "comm infidelity"
+      "sex narcissism"
+      "anxiety threats"
+      "roommate codependency";
+  }
+
+  .comm { grid-area: comm; }
+  .sex { grid-area: sex; }
+  .anxiety { grid-area: anxiety; }
+  .threats { grid-area: threats; }
+  .roommate { grid-area: roommate; }
+  .infidelity { grid-area: infidelity; }
+  .narcissism { grid-area: narcissism; }
+  .codependency { grid-area: codependency; }
 
   .card-grid { grid-template-columns: 1fr 1fr; }
   .form .btn { width: auto; }

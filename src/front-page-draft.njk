@@ -1,18 +1,19 @@
 ---
 layout: base.njk
-title: Couples Therapy in Roseville, CA | Roseville Couples Counseling
-seoTitle: Couples Therapy in Roseville, CA | Roseville Couples Counseling
-description: Couples therapy and marriage counseling in Roseville, CA for conflict, disconnection, infidelity, and communication problems. First session free.
-permalink: /
+title: Front page draft
+description: Draft of the homepage. Not linked from the menu.
+permalink: /front-page-draft/
+noindex: true
+eleventyExcludeFromCollections: true
 ---
-<div class="home">
+<div class="home home-draft">
   <section class="panel headline">
-    <h1>Let’s heal your<br>relationship</h1>
+    <h1>Real Change,<br>Less Time.</h1>
   </section>
 
   <section class="panel offer">
     <p>Online Coaching Worldwide<br>In Person Therapy in Roseville CA</p>
-    <p class="offer-price">50-minute sessions cost $300<br>Your first session is free<br>I don’t take insurance</p>
+    <p class="offer-price">50-minute sessions cost $300<br>Your first session is free<br>I don’t take insurance.</p>
     <p class="schedule"><a href="{{ site.booking }}">Click Here to Schedule</a></p>
   </section>
 
@@ -42,16 +43,6 @@ permalink: /
     <img src="/images/site/k9.jpg" alt="James Christensen offers couples therapy in Roseville, CA.">
   </figure>
 
-  <section class="issues">
-    <div class="topic-grid">
-      {% for issue in home.issues %}
-      <a class="topic-card {{ issue.key }}" href="{{ issue.href }}">
-        <p><strong>{{ issue.title }}</strong><span>{{ issue.body }}</span></p>
-      </a>
-      {% endfor %}
-    </div>
-  </section>
-
   <section class="videos">
     <h2>Popular Videos</h2>
     <div class="video-grid">
@@ -65,10 +56,18 @@ permalink: /
     </div>
   </section>
 
+  <section class="issues">
+    <div class="topic-grid">
+      {% for issue in homeDraft.issues %}
+      <a class="topic-card {{ issue.key }}" href="{{ issue.href }}">
+        <p><strong>{{ issue.title }}</strong><span>{{ issue.body }}</span></p>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
   <section class="contact-band" id="contact">
+    <h2>Call <a href="{{ site.phoneTel }}">{{ site.phoneDisplay }}</a><br>Or use this form</h2>
     {% include "contact-form.njk" %}
-    {% set listTitle = "Email list" %}
-    {% set formIntro = "A short note when there is something new." %}
-    {% include "subscribe-form.njk" %}
   </section>
 </div>
