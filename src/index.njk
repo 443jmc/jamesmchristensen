@@ -42,6 +42,22 @@ permalink: /
     <img src="/images/site/k9.jpg" alt="James Christensen offers couples therapy in Roseville, CA.">
   </figure>
 
+  <section class="issues">
+    <ul class="issue-list">
+      {% for issue in home.issues %}
+      <li><a href="{{ issue.href }}">{{ issue.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <h2>Call <a href="{{ site.phoneTel }}">{{ site.phoneDisplay }}</a><br>Or use this form</h2>
+    {% include "contact-form.njk" %}
+    {% set listTitle = "Email list" %}
+    {% set formIntro = "A short note when there is something new." %}
+    {% include "subscribe-form.njk" %}
+  </section>
+
   <section class="videos">
     <h2>Popular Videos</h2>
     <div class="video-grid">
@@ -53,21 +69,5 @@ permalink: /
       </figure>
       {% endfor %}
     </div>
-  </section>
-
-  <section class="issues">
-    <h2>How it Works</h2>
-    <div class="topic-grid">
-      {% for issue in home.issues %}
-      <a class="topic-card {{ issue.key }}" href="{{ issue.href }}">
-        <p><strong>{{ issue.title }}</strong> — {{ issue.body }}</p>
-      </a>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section class="contact-band" id="contact">
-    <h2>Call <a href="{{ site.phoneTel }}">{{ site.phoneDisplay }}</a><br>Or use This Form</h2>
-    {% include "contact-form.njk" %}
   </section>
 </div>

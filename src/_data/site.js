@@ -37,5 +37,7 @@ module.exports = {
     { href: "/about-james-christensen/", label: "About James Christensen" },
     { href: "/david-schnarch/", label: "About David Schnarch" },
     { href: "/how-couples-therapy-works/", label: "How Couples Therapy Works" },
+    { href: "/newsletter/", label: "Email list" },
+    { href: "/privacy/", label: "Privacy" },
   ],
 };

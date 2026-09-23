@@ -342,6 +342,12 @@ p {
   margin-bottom: 0.85rem;
 }
 
+.offer p:last-child,
+.story p:last-child,
+.how p:last-child {
+  margin-bottom: 0;
+}
+
 .offer {
   font-size: 1.22rem;
   line-height: 1.45;
@@ -386,7 +392,6 @@ p {
   padding-bottom: 1rem;
 }
 
-.topic-grid,
 .card-grid,
 .video-grid {
   display: grid;
@@ -394,23 +399,116 @@ p {
   gap: 1rem;
 }
 
-.topic-card {
-  display: block;
-  text-decoration: none;
+.issue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 1.15rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
   background: #fff;
   border-radius: 22px;
-  padding: 1.15rem 1.1rem;
-  min-height: 100%;
 }
 
-.topic-card p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
+.issue-list a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.35rem 0;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  text-decoration: none;
 }
 
-.topic-card strong {
-  font-weight: 600;
+.issue-list a:hover,
+.issue-list a:focus {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.home .contact-band {
+  display: grid;
+  justify-items: center;
+  gap: 1.15rem;
+}
+
+.home .contact-band h2 {
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+  margin-bottom: 0;
+}
+
+.home .contact-band .form-wrap {
+  width: 100%;
+}
+
+.contact-form .form-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0.15rem 0 0.35rem;
+}
+
+.contact-form .form-intro {
+  text-align: center;
+  margin: 0 0 0.85rem;
+}
+
+.contact-form {
+  max-width: 36rem;
+  background: #fff;
+  border: 6px solid #000;
+  border-radius: 22px;
+  padding: 1rem 1.05rem 1.1rem;
+  text-align: left;
+}
+
+.contact-form .form {
+  gap: 0.55rem;
+}
+
+.contact-form .form label {
+  gap: 0.2rem;
+  font-size: 0.92rem;
+}
+
+.contact-form .form input,
+.contact-form .form textarea {
+  border-radius: 12px;
+  padding: 0.5rem 0.7rem;
+  background: #f7f3ee;
+}
+
+.contact-form .form textarea {
+  min-height: 5.25rem;
+}
+
+.contact-form .form .btn {
+  width: auto;
+  justify-self: center;
+  margin-top: 0.15rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width: 560px) {
+  .issue-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+
+  .contact-form .form {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 0.7rem;
+  }
+
+  .contact-form .field-wide,
+  .contact-form .form .btn {
+    grid-column: 1 / -1;
+  }
 }
 
 .video-card {
@@ -621,46 +719,25 @@ p {
 }
 
 .site-footer {
-  padding: 1.5rem 0 calc(2rem + env(safe-area-inset-bottom));
-  background: transparent;
-}
-
-.footer-grid {
-  display: grid;
-  gap: 1.15rem;
-  max-width: 26rem;
-  margin: 0 auto;
-}
-
-.footer-card {
-  border: 6px solid #000;
-  border-radius: 11px;
-  padding: 1.1rem 1rem 1.2rem;
+  padding: 2.2rem 0 calc(2.4rem + env(safe-area-inset-bottom));
   text-align: center;
-  background: var(--paper);
 }
 
-.footer-name {
-  font-family: var(--serif);
-  font-size: 1.45rem;
-  margin-bottom: 0.5rem;
-}
-
-.footer-links {
+.footer-inner {
+  max-width: 28rem;
   display: grid;
-  justify-items: center;
+  gap: 0.45rem;
 }
 
-.footer-links a {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+.footer-inner p {
+  margin: 0;
 }
 
-.footer-links a:hover,
-.footer-links a:focus {
-  text-decoration: underline;
+.footer-id {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin-bottom: 0.15rem;
 }
 
 @media (min-width: 860px) {
@@ -671,16 +748,28 @@ p {
       "offer james"
       "cadet story"
       "how tree"
-      "videos videos"
       "issues issues"
-      "contact contact";
+      "contact contact"
+      "videos videos";
     align-items: stretch;
   }
 
-  .photo { height: 100%; }
+  .photo { height: 100%; min-height: 0; }
   .headline { grid-area: headline; }
   .offer { grid-area: offer; }
-  .james { grid-area: james; }
+  .james {
+    grid-area: james;
+    position: relative;
+    min-height: 0;
+  }
+  .james img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+  }
   .cadet { grid-area: cadet; }
   .story { grid-area: story; }
   .how { grid-area: how; }
@@ -694,24 +783,6 @@ p {
     grid-template-rows: auto auto;
     grid-auto-flow: column;
   }
-
-  .topic-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "comm infidelity"
-      "sex narcissism"
-      "anxiety threats"
-      "roommate codependency";
-  }
-
-  .comm { grid-area: comm; }
-  .sex { grid-area: sex; }
-  .anxiety { grid-area: anxiety; }
-  .threats { grid-area: threats; }
-  .roommate { grid-area: roommate; }
-  .infidelity { grid-area: infidelity; }
-  .narcissism { grid-area: narcissism; }
-  .codependency { grid-area: codependency; }
 
   .card-grid { grid-template-columns: 1fr 1fr; }
   .form .btn { width: auto; }
