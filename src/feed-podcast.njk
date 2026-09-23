@@ -22,16 +22,17 @@ eleventyExcludeFromCollections: true
     </itunes:category>
     {% for post in collections.podcast | sortByDate %}
     {% set enc = post.data.audioUrl | enclosure %}
+    {% if enc and enc.length != "0" %}
     <item>
       <title>{{ post.data.title | xml }}</title>
       <link>{{ site.url }}{{ post.url | canonical("") }}</link>
-      <guid>{{ site.url }}{{ post.url | canonical("") }}</guid>
-      <pubDate>{{ post.data.pubDate | isoDate }}</pubDate>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url | canonical("") }}</guid>
+      <pubDate>{{ post.data.pubDate | rfc822 }}</pubDate>
+      <itunes:explicit>false</itunes:explicit>
       {% if post.data.excerpt %}<description>{{ post.data.excerpt | xml }}</description>{% endif %}
-      {% if enc %}
       <enclosure url="{{ enc.url | xml }}" length="{{ enc.length }}" type="{{ enc.type }}"/>
-      {% endif %}
     </item>
+    {% endif %}
     {% endfor %}
   </channel>
 </rss>

@@ -14,7 +14,7 @@ eleventyExcludeFromCollections: true
       <title>{{ post.data.title | xml }}</title>
       <link>{{ site.url }}{{ post.url | canonical("") }}</link>
       <guid>{{ site.url }}{{ post.url | canonical("") }}</guid>
-      <pubDate>{{ post.data.pubDate | isoDate }}</pubDate>
+      <pubDate>{{ post.data.pubDate | rfc822 }}</pubDate>
       {% if post.data.excerpt %}<description>{{ post.data.excerpt | xml }}</description>{% endif %}
     </item>
     {% endfor %}
